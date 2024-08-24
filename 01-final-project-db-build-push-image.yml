@@ -23,4 +23,3 @@ stages:
         repository: 'proasacio/final-project-db'
         command: 'buildAndPush'
         Dockerfile: '**/Dockerfile'
-        tags: '$(tag)'
