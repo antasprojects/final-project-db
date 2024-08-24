@@ -25,6 +25,4 @@ INSERT INTO power_rangers (name, color, series, home_planet, zord) VALUES
 ('T.J. Johnson', 'Blue', 'Power Rangers in Space', 'Earth', 'Astro Megazord'),
 ('Karone', 'Pink', 'Power Rangers Lost Galaxy', 'Mirinoi', 'Wildcat Galactabeast'),
 ('Lauren Shiba', 'Red', 'Power Rangers Samurai', 'Earth', 'Lion Folding Zord'),
-('Merrick Baliton', 'Silver', 'Power Rangers Wild Force', 'Earth', 'Predazord'),
-('Antek', 'Red', 'Power Rangers Koks', 'Tatooine', 'Kozakzord');
-
+('Merrick Baliton', 'Silver', 'Power Rangers Wild Force', 'Earth', 'Predazord')
