@@ -1,5 +1,7 @@
 trigger:
-- main
+  branches:
+    include:
+      - development
 
 resources:
 - repo: self
