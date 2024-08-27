@@ -25,4 +25,5 @@ INSERT INTO power_rangers (name, color, series, home_planet, zord) VALUES
 ('Antoni Szczekot', 'Blue', 'Power Rangers in Space', 'Earth', 'Astro Megazord'),
 ('Antoni Szczekot', 'Pink', 'Power Rangers Lost Galaxy', 'Mirinoi', 'Wildcat Galactabeast'),
 ('Antoni Szczekot', 'Red', 'Power Rangers Samurai', 'Earth', 'Lion Folding Zord'),
-('Antoni Szczekot', 'Silver', 'Power Rangers Wild Force', 'Earth', 'Some random zord')
+('Antoni Szczekot', 'Silver', 'Power Rangers Wild Force', 'Earth', 'Some random zord'),
+('Hassan', 'Black', 'SpD', 'Earth', 'Some radndom zord')
