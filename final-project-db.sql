@@ -35,31 +35,6 @@ INSERT INTO Users (username, email, password_hash) VALUES
 ('steve_rogers', 'steve.rogers@example.com', '$2b$12$iLn5R5gF6HcK0dJl/MbIeS'),
 ('wanda_maximoff', 'wanda.maximoff@example.com', '$2b$12$jLe8F6hH7Gh7MoMHqOlCgR');
 
-
--- Create the Users_Profile table to store user preferences and visited spots
-CREATE TABLE IF NOT EXISTS Users_Profile (
-    user_id INT REFERENCES Users(user_id),   -- Foreign key referencing Users table
-    preferences JSONB,                       -- JSON object to store user preferences (e.g., preferred activities, weather conditions)
-    visited_spots_id INT REFERENCES Green_Places(place_id)  -- Foreign key referencing Green_Places table for visited spots
-);
-
--- Corrected INSERT statement for Users_Profile table
-INSERT INTO Users_Profile (user_id, preferences, visited_spots_id) VALUES 
-(1, '{"preferred_activities": ["hiking", "picnicking"]}', 1),
-(2, '{"preferred_activities": ["cycling", "bird watching"]}', 2),
-(3, '{"preferred_activities": ["running", "photography"]}', 3),
-(4, '{"preferred_activities": ["cycling", "picnicking"]}', 4),
-(5, '{"preferred_activities": ["bird watching", "hiking"]}', 3),
-(6, '{"preferred_activities": ["photography", "walking"]}', 5),
-(7, '{"preferred_activities": ["boating", "running"]}', 1),
-(8, '{"preferred_activities": ["horse riding", "wildlife watching"]}', 8),
-(9, '{"preferred_activities": ["fishing", "picnicking"]}', 10),
-(10, '{"preferred_activities": ["art exhibits", "stargazing"]}', 17),
-(11, '{"preferred_activities": ["hiking", "bird watching"]}', 12),
-(12, '{"preferred_activities": ["cycling", "scenic walks"]}', 6),
-(13, '{"preferred_activities": ["kayaking", "swimming"]}', 27);
-
-
 -- Create the Green_Places table to store information about green spaces
 CREATE TABLE IF NOT EXISTS Green_Places (
     place_id SERIAL PRIMARY KEY,             -- Unique identifier for each green place (auto-incremented)
@@ -108,6 +83,32 @@ VALUES
 ('Lea Valley', 'rivers', 'A green corridor following the River Lea, with parks and nature reserves.', 51.5637, -0.0333, 4.6, 'London E5, UK', '+44 300 003 0610', 'https://www.visitleevalley.org.uk/lee-valley-regional-park', 'https://upload.wikimedia.org/wikipedia/commons/c/cc/River_Lea_Near_Hackney_Marshes.jpg', TRUE, '{"monday": "Open 24 hours", "tuesday": "Open 24 hours"}'),
 ('Ruislip Lido', 'beaches', 'A 60-acre lake with a sandy beach, surrounded by woodland.', 51.5853, -0.4348, 4.6, 'London HA4 7TY, UK', '+44 1895 558191', 'https://www.hillingdon.gov.uk/ruisliplido', 'https://upload.wikimedia.org/wikipedia/commons/3/3c/Ruislip_Lido_-_geograph.org.uk_-_508929.jpg', TRUE, '{"monday": "07:30-20:00", "tuesday": "07:30-20:00"}'),
 ('Frensham Ponds', 'beaches', 'Two large lakes offering swimming, sailing, and sunbathing.', 51.1568, -0.7947, 4.7, 'Frensham, London GU10 2QB, UK', '+44 1252 792801', 'https://www.nationaltrust.org.uk/frensham-great-pond-and-common', 'https://upload.wikimedia.org/wikipedia/commons/e/eb/Frensham_Great_Pond.jpg', TRUE, '{"monday": "07:00-19:00", "tuesday": "07:00-19:00"}');
+
+
+-- Create the Users_Profile table to store user preferences and visited spots
+CREATE TABLE IF NOT EXISTS Users_Profile (
+    user_id INT REFERENCES Users(user_id),   -- Foreign key referencing Users table
+    preferences JSONB,                       -- JSON object to store user preferences (e.g., preferred activities, weather conditions)
+    visited_spots_id INT REFERENCES Green_Places(place_id)  -- Foreign key referencing Green_Places table for visited spots
+);
+
+-- Corrected INSERT statement for Users_Profile table
+INSERT INTO Users_Profile (user_id, preferences, visited_spots_id) VALUES 
+(1, '{"preferred_activities": ["hiking", "picnicking"]}', 1),
+(2, '{"preferred_activities": ["cycling", "bird watching"]}', 2),
+(3, '{"preferred_activities": ["running", "photography"]}', 3),
+(4, '{"preferred_activities": ["cycling", "picnicking"]}', 4),
+(5, '{"preferred_activities": ["bird watching", "hiking"]}', 3),
+(6, '{"preferred_activities": ["photography", "walking"]}', 5),
+(7, '{"preferred_activities": ["boating", "running"]}', 1),
+(8, '{"preferred_activities": ["horse riding", "wildlife watching"]}', 8),
+(9, '{"preferred_activities": ["fishing", "picnicking"]}', 10),
+(10, '{"preferred_activities": ["art exhibits", "stargazing"]}', 17),
+(11, '{"preferred_activities": ["hiking", "bird watching"]}', 12),
+(12, '{"preferred_activities": ["cycling", "scenic walks"]}', 6),
+(13, '{"preferred_activities": ["kayaking", "swimming"]}', 27);
+
+
 
 -- Create the Activities table to store information about activities available at green spaces
 CREATE TABLE IF NOT EXISTS Activities (
@@ -200,7 +201,6 @@ VALUES
 ('royal', 2),
 ('family-friendly', 2),
 ('wildlife', 3),
-('woodland', 3),
 ('hiking', 3),
 ('cycling', 4),
 ('nature-reserve', 4),
@@ -222,52 +222,22 @@ VALUES
 ('playground', 9),
 ('fishing', 10),
 ('events', 10),
-('playground', 10),
 ('japanese-garden', 11),
 ('botanical', 11),
 ('art', 11),
-('wildlife', 12),
-('horse-riding', 12),
-('woodland', 12),
-('urban', 13),
-('sports', 13),
-('playground', 13),
 ('historical', 14),
-('events', 14),
 ('lido', 15),
 ('fitness', 15),
-('scenic-views', 16),
 ('stargazing', 16),
-('art', 17),
-('historical', 17),
-('gardens', 17),
 ('lake', 18),
-('boating', 18),
-('central', 18),
-('japanese-garden', 19),
-('botanical', 19),
 ('wetlands', 20),
-('bird-watching', 20),
 ('urban', 20),
-('walking', 21),
-('lake', 21),
-('recreation', 21),
 ('gardens', 22),
 ('scenic-walk', 22),
-('photography', 22),
-('wetlands', 23),
-('nature-reserve', 23),
-('bird-watching', 23),
-('japanese-garden', 24),
 ('cultural', 24),
 ('meditative', 24),
-('scenic-walk', 25),
-('cycling', 25),
 ('panoramic-views', 25),
 ('beach', 26),
-('family-friendly', 26),
-('picnicking', 26),
-('lake', 27),
 ('swimming', 27),
 ('recreation', 27);
 
@@ -282,8 +252,7 @@ CREATE TABLE IF NOT EXISTS Saved_Journeys (
 );
 
 -- Insert dummy data into Saved_Journeys table
-INSERT INTO Saved_Journeys (user_id, journey_name, journey_details)
-VALUES
+INSERT INTO Saved_Journeys (user_id, journey_name, journey_details) VALUES
 (1, 'Weekend Getaway', '{"places": ["Central Park", "Hyde Park"], "activities": ["Hiking", "Boating"]}');
 
 -- Table for storing user recommendations of green spaces to other users
@@ -299,8 +268,9 @@ CREATE TABLE IF NOT EXISTS User_Recommendations (
 -- Insert dummy data into User_Recommendations table
 INSERT INTO User_Recommendations (recommender_user_id, recommended_user_id, place_id, message)
 VALUES
-(1, 2, 1, "You should check out Central Park, it's beautiful!"),
-(2, 3, 2, "Hyde Park is great for a relaxing day out.");
+(1, 2, 1, 'You should check out Central Park, it is beautiful!'),
+(2, 3, 2, 'Hyde Park is great for a relaxing day out.');
+
 
 
 -- Table for storing environmental reminders related to specific green spaces
