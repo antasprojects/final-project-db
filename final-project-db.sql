@@ -23,8 +23,8 @@ CREATE TABLE IF NOT EXISTS Users (
 
 -- Insert dummy data into Users table
 INSERT INTO Users (username, email, password_hash) VALUES
-('john_doe', 'john@example.com', '$2b$12$8RmTIuexL8qPRA8tht6V0e'),
-('jane_smith', 'jane@example.com', '$2b$12$ZVmNHg1w3J8HFoMHZmtIvK'),
+('john_doe', 'john-doe@example.com', '$2b$12$8RmTIuexL8qPRA8tht6V0e'),
+('jane_smith', 'jane_smith@example.com', '$2b$12$ZVmNHg1w3J8HFoMHZmtIvK'),
 ('alice_wonder', 'alice@example.com', '$2b$12$5Le5eP9mK9BhxMPl/EbIyO');
 
 -- Create the Users_Profile table to store user preferences and visited spots
