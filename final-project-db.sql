@@ -39,16 +39,16 @@ INSERT INTO Users (username, email, password_hash) VALUES
 -- Create the Green_Places table to store information about green spaces
 CREATE TABLE IF NOT EXISTS Green_Places (
     place_id SERIAL PRIMARY KEY,             -- Unique identifier for each green place (auto-incremented)
-    name VARCHAR(100) UNIQUE NOT NULL,       -- Name of the green space
-    location_type VARCHAR(50),           -- Type of location (e.g., 'park', 'trail', 'beach', etc.)
-    description VARCHAR(255),                -- Description of the green space
+    name VARCHAR(500) UNIQUE NOT NULL,       -- Name of the green space
+    location_type VARCHAR(500),           -- Type of location (e.g., 'park', 'trail', 'beach', etc.)
+    description text,                -- Description of the green space
     latitude FLOAT NOT NULL,                 -- Latitude for the green space's location
     longitude FLOAT NOT NULL,                -- Longitude for the green space's location
     rating FLOAT CHECK (rating >= 0 AND rating <= 5),  -- Average user rating (0-5 scale)
     address VARCHAR(255),                    -- Full address of the green space
     phone_number VARCHAR(20),                -- Contact number for the green space, if available
-    website_url VARCHAR(255),                -- Website URL for the green space, if available
-    image_url VARCHAR(255),                  -- URL to an image of the green space
+    website_url VARCHAR(500),                -- Website URL for the green space, if available
+    image_url VARCHAR(500),                  -- URL to an image of the green space
     open_now BOOLEAN,                        -- Indicates if the green space is currently open
     opening_hours JSONB                      -- JSON object storing the opening hours for each day of the week
 );
@@ -187,27 +187,25 @@ VALUES
 -- Create the Tags table for categorizing green spaces
 CREATE TABLE IF NOT EXISTS Tags (
     tag_id SERIAL PRIMARY KEY,
-    tag_name VARCHAR(50) NOT NULL,
+    tag_name VARCHAR(500) NOT NULL,
     place_id INT REFERENCES Green_Places(place_id)
 );
 
 -- Insert new tags into the Tags table referring to all Green_Places
 INSERT INTO Tags (tag_name, place_id) VALUES
 ('Hiking', 1),
-('Woodlands', 3),
 ('Cycling', 4),
 ('Dog-friendly', 2),
 ('Garden', 11),
 ('Wildlife', 3),
 ('Horse Riding', 12),
 ('Beach', 26),
-('Wheelchair accessible', 9),
-('Restrooms', 18),
-('Parks', 1),
+('Dog-friendly', 1),
+('Park', 1),
 ('Historic Landmark', 14),
 ('Camping', 13),
 ('Playground', 9),
-('Waterbodies', 18);
+('River', 18);
 
 
 -- Table for saving user journeys to revisit their planned trips
@@ -241,16 +239,111 @@ VALUES
 
 
 
--- Table for storing environmental reminders related to specific green spaces
+-- Drop the existing Environmental_Reminders table if it exists
+DROP TABLE IF EXISTS Environmental_Reminders CASCADE;
+
+-- Create the Environmental_Reminders table
 CREATE TABLE IF NOT EXISTS Environmental_Reminders (
     reminder_id SERIAL PRIMARY KEY,               -- Unique identifier for each reminder (auto-incremented)
-    place_id INT REFERENCES Green_Places(place_id),  -- Foreign key referencing Green_Places table
+    tag_id INT REFERENCES Tags(tag_id) ON DELETE SET NULL,  -- Foreign key referencing Tags table
     reminder_text TEXT NOT NULL,                  -- Text of the reminder (e.g., "Don’t forget to bring reusable water bottles")
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP  -- Timestamp of when the reminder was created
 );
 
--- Insert dummy data into Environmental_Reminders table
-INSERT INTO Environmental_Reminders (place_id, reminder_text)
-VALUES
-(1, 'Please do not litter.'),
-(2, 'Respect the wildlife. No feeding animals.');
+-- Insert environmental reminders based on tags
+INSERT INTO Environmental_Reminders (tag_id, reminder_text) VALUES
+-- Hiking
+(1, 'Stay on designated trails to protect the environment.'),
+(1, 'Carry out all trash to keep the trails clean.'),
+(1, 'Wear appropriate footwear to prevent injury.'),
+(1, 'Respect wildlife by observing from a distance.'),
+(1, 'Take plenty of water to stay hydrated.'),
+(1, 'Use sunscreen to protect yourself from the sun.'),
+
+-- Cycling
+(2, 'Wear a helmet for safety while cycling.'),
+(2, 'Stay on marked cycling paths to avoid accidents.'),
+(2, 'Yield to pedestrians on shared paths.'),
+(2, 'Keep a safe distance from other cyclists.'),
+(2, 'Avoid cycling in wet conditions to prevent skidding.'),
+(2, 'Check your bike for safety before riding.'),
+
+-- Dog-friendly
+(3, 'Keep your dog on a leash unless in designated off-leash areas.'),
+(3, 'Pick up after your dog to keep the area clean.'),
+(3, 'Ensure your dog is well-behaved around other visitors.'),
+(3, 'Carry water for your dog to prevent dehydration.'),
+(3, 'Avoid bringing your dog in extreme temperatures.'),
+(3, 'Keep your dog away from wildlife to avoid disturbances.'),
+
+-- Garden
+(4, 'Do not pick flowers or plants to preserve the garden’s beauty.'),
+(4, 'Stay on pathways to protect the garden beds.'),
+(4, 'Respect the peace and tranquility of the garden.'),
+(4, 'Avoid touching plants as some may be delicate.'),
+(4, 'Dispose of litter in designated bins.'),
+(4, 'Enjoy the garden’s beauty without disturbing others.'),
+
+-- Wildlife
+(5, 'Observe wildlife from a distance to avoid stress.'),
+(5, 'Do not feed the animals; it can harm their health.'),
+(5, 'Keep noise levels down to avoid disturbing wildlife.'),
+(5, 'Stay on marked paths to protect wildlife habitats.'),
+(5, 'Use binoculars for better viewing without disturbance.'),
+(5, 'Avoid using flash photography near animals.'),
+
+-- Horse Riding
+(6, 'Wear a helmet for safety while riding.'),
+(6, 'Stick to designated riding trails.'),
+(6, 'Keep a safe distance between horses to prevent accidents.'),
+(6, 'Be cautious of pedestrians and cyclists on shared paths.'),
+(6, 'Ensure your horse is well-trained for the terrain.'),
+(6, 'Avoid riding in extreme weather conditions.'),
+
+-- Beach
+(7, 'Dispose of litter properly to keep the beach clean.'),
+(7, 'Use reef-safe sunscreen to protect marine life.'),
+(7, 'Respect local wildlife; do not disturb animals.'),
+(7, 'Avoid stepping on dunes and protected areas.'),
+(7, 'Be cautious of currents and swim in designated areas.'),
+(7, 'Take all your belongings with you when leaving.'),
+
+-- Park
+(8, 'Keep the park clean by disposing of trash in bins.'),
+(8, 'Respect the natural environment; do not damage plants or trees.'),
+(8, 'Keep noise levels down to preserve the park’s tranquility.'),
+(8, 'Stay on designated paths to protect the park grounds.'),
+(8, 'Follow park rules and regulations for everyone’s safety.'),
+(8, 'Supervise children to ensure their safety.'),
+
+-- Historic Landmark
+(9, 'Do not touch or climb on historic structures.'),
+(9, 'Respect the significance of the site by following guidelines.'),
+(9, 'Take only photographs, leave only footprints.'),
+(9, 'Avoid littering to preserve the landmark’s beauty.'),
+(9, 'Stay on designated paths to protect the site.'),
+(9, 'Learn about the history and significance of the site.'),
+
+-- Camping
+(10, 'Keep your campsite clean and dispose of waste properly.'),
+(10, 'Do not feed wildlife; store food securely.'),
+(10, 'Respect quiet hours to avoid disturbing others.'),
+(10, 'Use designated fire pits to prevent wildfires.'),
+(10, 'Leave no trace; pack out what you pack in.'),
+(10, 'Be mindful of your impact on the natural environment.'),
+
+-- Playground
+(11, 'Ensure children are supervised at all times.'),
+(11, 'Keep the playground clean by disposing of trash in bins.'),
+(11, 'Make sure play equipment is used appropriately.'),
+(11, 'Respect others by sharing equipment and taking turns.'),
+(11, 'Report any damaged equipment to park authorities.'),
+(11, 'Ensure children use age-appropriate play areas.'),
+
+-- River
+(12, 'Avoid polluting the water; dispose of trash properly.'),
+(12, 'Be cautious of strong currents when swimming.'),
+(12, 'Respect the river’s wildlife by not disturbing their habitats.'),
+(12, 'Stay on designated paths to avoid erosion.'),
+(12, 'Do not use soap or detergent in the river.'),
+(12, 'Enjoy the river responsibly; do not disturb other visitors.');
