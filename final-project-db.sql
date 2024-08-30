@@ -1,14 +1,15 @@
 -- Drop existing tables if they exist
-DROP TABLE IF EXISTS Tags CASCADE;                     -- Standalone table
-DROP TABLE IF EXISTS Interesting_Facts CASCADE;        -- Dependent on Green_Places
-DROP TABLE IF EXISTS Activities CASCADE;               -- Dependent on Green_Places
-DROP TABLE IF EXISTS User_Interactions CASCADE;        -- Dependent on Users
-DROP TABLE IF EXISTS Environmental_Reminders CASCADE;  -- Dependent on Green_Places
-DROP TABLE IF EXISTS User_Recommendations CASCADE;     -- Dependent on Users and Green_Places
-DROP TABLE IF EXISTS Saved_Journeys CASCADE;           -- Dependent on Users
-DROP TABLE IF EXISTS Users_Profile CASCADE;            -- Dependent on Users and Green_Places
-DROP TABLE IF EXISTS Green_Places CASCADE;             -- Dependent on nothing, referenced by many
-DROP TABLE IF EXISTS Users CASCADE;                    -- Dependent on nothing, referenced by many
+DROP TABLE IF EXISTS Tags CASCADE;                     
+DROP TABLE IF EXISTS Interesting_Facts CASCADE;        
+DROP TABLE IF EXISTS Activities CASCADE;               
+DROP TABLE IF EXISTS User_Interactions CASCADE;        
+DROP TABLE IF EXISTS Environmental_Reminders CASCADE;  
+DROP TABLE IF EXISTS User_Recommendations CASCADE;     
+DROP TABLE IF EXISTS Saved_Journeys CASCADE;           
+DROP TABLE IF EXISTS Users_Profile CASCADE;            
+DROP TABLE IF EXISTS Green_Places CASCADE;             
+DROP TABLE IF EXISTS Users CASCADE;  
+
 
 -- Create the Users table to store user information
 CREATE TABLE IF NOT EXISTS Users (
@@ -183,63 +184,30 @@ VALUES
 (27, 'Ruislip Lido was originally a reservoir created in 1811 and now features a sandy beach and a miniature railway.'),
 (28, 'Frensham Ponds were created in the Middle Ages to supply fish to the Bishop of Winchester estate.');
 
-
--- Tags table for filtering green spaces by categories or features
+-- Create the Tags table for categorizing green spaces
 CREATE TABLE IF NOT EXISTS Tags (
-    gptag_id SERIAL PRIMARY KEY,              -- Unique identifier for each tag (auto-incremented)
-    tag_name VARCHAR(50) UNIQUE NOT NULL,   -- Name of the tag (e.g., 'forest', 'playground', 'waterfront')
-    place_id INT REFERENCES Green_Places(place_id)  -- Foreign key referencing Green_Places table
+    tag_id SERIAL PRIMARY KEY,
+    tag_name VARCHAR(50) NOT NULL,
+    place_id INT REFERENCES Green_Places(place_id)
 );
 
--- Insert dummy data into Tags table referring to all Green_Places
-INSERT INTO Tags (tag_name, place_id)
-VALUES
-('park', 1),
-('boating', 1),
-('large', 1),
-('central', 2),
-('royal', 2),
-('family-friendly', 2),
-('wildlife', 3),
-('hiking', 3),
-('cycling', 4),
-('nature-reserve', 4),
-('deer', 4),
-('scenic-views', 5),
-('heritage', 5),
-('picnicking', 5),
-('canal', 6),
-('walking', 6),
-('photography', 6),
-('trail', 7),
-('running', 7),
-('waterfront', 7),
-('woodland', 8),
-('bird-watching', 8),
-('horse-riding', 8),
-('victorian', 9),
-('sports', 9),
-('playground', 9),
-('fishing', 10),
-('events', 10),
-('japanese-garden', 11),
-('botanical', 11),
-('art', 11),
-('historical', 14),
-('lido', 15),
-('fitness', 15),
-('stargazing', 16),
-('lake', 18),
-('wetlands', 20),
-('urban', 20),
-('gardens', 22),
-('scenic-walk', 22),
-('cultural', 24),
-('meditative', 24),
-('panoramic-views', 25),
-('beach', 26),
-('swimming', 27),
-('recreation', 27);
+-- Insert new tags into the Tags table referring to all Green_Places
+INSERT INTO Tags (tag_name, place_id) VALUES
+('Hiking', 1),
+('Woodlands', 3),
+('Cycling', 4),
+('Dog-friendly', 2),
+('Garden', 11),
+('Wildlife', 3),
+('Horse Riding', 12),
+('Beach', 26),
+('Wheelchair accessible', 9),
+('Restrooms', 18),
+('Parks', 1),
+('Historic Landmark', 14),
+('Camping', 13),
+('Playground', 9),
+('Waterbodies', 18);
 
 
 -- Table for saving user journeys to revisit their planned trips
