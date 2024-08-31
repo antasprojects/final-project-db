@@ -238,10 +238,6 @@ VALUES
 (2, 3, 2, 'Hyde Park is great for a relaxing day out.');
 
 
-
--- Drop the existing Environmental_Reminders table if it exists
-DROP TABLE IF EXISTS Environmental_Reminders CASCADE;
-
 -- Create the Environmental_Reminders table
 CREATE TABLE IF NOT EXISTS Environmental_Reminders (
     reminder_id SERIAL PRIMARY KEY,               -- Unique identifier for each reminder (auto-incremented)
