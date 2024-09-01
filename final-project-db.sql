@@ -244,100 +244,84 @@ CREATE TABLE IF NOT EXISTS Environmental_Reminders (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP  -- Timestamp of when the reminder was created
 );
 
--- Insert environmental reminders based on tags
+-- Insert environmental reminders based on updated tags
 INSERT INTO Environmental_Reminders (tag_id, reminder_text) VALUES
+-- Woodlands
+(1, 'Respect the tranquility of the woodland area.'),
+(1, 'Do not disturb the wildlife in the woodlands.'),
+(1, 'Stick to marked trails to protect the woodland habitat.'),
+(1, 'Avoid lighting fires in the woodland area.'),
+(1, 'Leave no trace; take your litter with you.'),
+(1, 'Keep noise to a minimum to preserve the natural ambiance.'),
+
 -- Hiking
-(1, 'Stay on designated trails to protect the environment.'),
-(1, 'Carry out all trash to keep the trails clean.'),
-(1, 'Wear appropriate footwear to prevent injury.'),
-(1, 'Respect wildlife by observing from a distance.'),
-(1, 'Take plenty of water to stay hydrated.'),
-(1, 'Use sunscreen to protect yourself from the sun.'),
-
--- Cycling
-(2, 'Wear a helmet for safety while cycling.'),
-(2, 'Stay on marked cycling paths to avoid accidents.'),
-(2, 'Yield to pedestrians on shared paths.'),
-(2, 'Keep a safe distance from other cyclists.'),
-(2, 'Avoid cycling in wet conditions to prevent skidding.'),
-(2, 'Check your bike for safety before riding.'),
-
--- Dog-friendly
-(3, 'Keep your dog on a leash unless in designated off-leash areas.'),
-(3, 'Pick up after your dog to keep the area clean.'),
-(3, 'Ensure your dog is well-behaved around other visitors.'),
-(3, 'Carry water for your dog to prevent dehydration.'),
-(3, 'Avoid bringing your dog in extreme temperatures.'),
-(3, 'Keep your dog away from wildlife to avoid disturbances.'),
-
--- Garden
-(4, 'Do not pick flowers or plants to preserve the garden’s beauty.'),
-(4, 'Stay on pathways to protect the garden beds.'),
-(4, 'Respect the peace and tranquility of the garden.'),
-(4, 'Avoid touching plants as some may be delicate.'),
-(4, 'Dispose of litter in designated bins.'),
-(4, 'Enjoy the garden’s beauty without disturbing others.'),
-
--- Wildlife
-(5, 'Observe wildlife from a distance to avoid stress.'),
-(5, 'Do not feed the animals; it can harm their health.'),
-(5, 'Keep noise levels down to avoid disturbing wildlife.'),
-(5, 'Stay on marked paths to protect wildlife habitats.'),
-(5, 'Use binoculars for better viewing without disturbance.'),
-(5, 'Avoid using flash photography near animals.'),
-
--- Horse Riding
-(6, 'Wear a helmet for safety while riding.'),
-(6, 'Stick to designated riding trails.'),
-(6, 'Keep a safe distance between horses to prevent accidents.'),
-(6, 'Be cautious of pedestrians and cyclists on shared paths.'),
-(6, 'Ensure your horse is well-trained for the terrain.'),
-(6, 'Avoid riding in extreme weather conditions.'),
+(2, 'Stay on designated trails to protect the environment.'),
+(2, 'Carry out all trash to keep the trails clean.'),
+(2, 'Wear appropriate footwear to prevent injury.'),
+(2, 'Respect wildlife by observing from a distance.'),
+(2, 'Take plenty of water to stay hydrated.'),
+(2, 'Use sunscreen to protect yourself from the sun.'),
 
 -- Beach
-(7, 'Dispose of litter properly to keep the beach clean.'),
-(7, 'Use reef-safe sunscreen to protect marine life.'),
-(7, 'Respect local wildlife; do not disturb animals.'),
-(7, 'Avoid stepping on dunes and protected areas.'),
-(7, 'Be cautious of currents and swim in designated areas.'),
-(7, 'Take all your belongings with you when leaving.'),
-
--- Park
-(8, 'Keep the park clean by disposing of trash in bins.'),
-(8, 'Respect the natural environment; do not damage plants or trees.'),
-(8, 'Keep noise levels down to preserve the park’s tranquility.'),
-(8, 'Stay on designated paths to protect the park grounds.'),
-(8, 'Follow park rules and regulations for everyone’s safety.'),
-(8, 'Supervise children to ensure their safety.'),
-
--- Historic Landmark
-(9, 'Do not touch or climb on historic structures.'),
-(9, 'Respect the significance of the site by following guidelines.'),
-(9, 'Take only photographs, leave only footprints.'),
-(9, 'Avoid littering to preserve the landmark’s beauty.'),
-(9, 'Stay on designated paths to protect the site.'),
-(9, 'Learn about the history and significance of the site.'),
+(3, 'Dispose of litter properly to keep the beach clean.'),
+(3, 'Use reef-safe sunscreen to protect marine life.'),
+(3, 'Respect local wildlife; do not disturb animals.'),
+(3, 'Avoid stepping on dunes and protected areas.'),
+(3, 'Be cautious of currents and swim in designated areas.'),
+(4, 'Take all your belongings with you when leaving.'),
 
 -- Camping
-(10, 'Keep your campsite clean and dispose of waste properly.'),
-(10, 'Do not feed wildlife; store food securely.'),
-(10, 'Respect quiet hours to avoid disturbing others.'),
-(10, 'Use designated fire pits to prevent wildfires.'),
-(10, 'Leave no trace; pack out what you pack in.'),
-(10, 'Be mindful of your impact on the natural environment.'),
+(5, 'Keep your campsite clean and dispose of waste properly.'),
+(5, 'Do not feed wildlife; store food securely.'),
+(5, 'Respect quiet hours to avoid disturbing others.'),
+(5, 'Use designated fire pits to prevent wildfires.'),
+(5, 'Leave no trace; pack out what you pack in.'),
+(5, 'Be mindful of your impact on the natural environment.'),
 
--- Playground
-(11, 'Ensure children are supervised at all times.'),
-(11, 'Keep the playground clean by disposing of trash in bins.'),
-(11, 'Make sure play equipment is used appropriately.'),
-(11, 'Respect others by sharing equipment and taking turns.'),
-(11, 'Report any damaged equipment to park authorities.'),
-(11, 'Ensure children use age-appropriate play areas.'),
+-- Park
+(6, 'Keep the park clean by disposing of trash in bins.'),
+(6, 'Respect the natural environment; do not damage plants or trees.'),
+(6, 'Keep noise levels down to preserve the park’s tranquility.'),
+(6, 'Stay on designated paths to protect the park grounds.'),
+(6, 'Follow park rules and regulations for everyone’s safety.'),
+(6, 'Supervise children to ensure their safety.'),
 
--- River
-(12, 'Avoid polluting the water; dispose of trash properly.'),
-(12, 'Be cautious of strong currents when swimming.'),
-(12, 'Respect the river’s wildlife by not disturbing their habitats.'),
-(12, 'Stay on designated paths to avoid erosion.'),
+-- Garden
+(7, 'Do not pick flowers or plants to preserve the garden’s beauty.'),
+(7, 'Stay on pathways to protect the garden beds.'),
+(7, 'Respect the peace and tranquility of the garden.'),
+(7, 'Avoid touching plants as some may be delicate.'),
+(7, 'Dispose of litter in designated bins.'),
+(7, 'Enjoy the garden’s beauty without disturbing others.'),
+
+-- Wildlife
+(8, 'Observe wildlife from a distance to avoid stress.'),
+(8, 'Do not feed the animals; it can harm their health.'),
+(8, 'Keep noise levels down to avoid disturbing wildlife.'),
+(8, 'Stay on marked paths to protect wildlife habitats.'),
+(8, 'Use binoculars for better viewing without disturbance.'),
+(8, 'Avoid using flash photography near animals.'),
+
+-- Farm
+(9, 'Respect farm animals; do not feed them without permission.'),
+(9, 'Stay on designated paths to protect farm operations.'),
+(9, 'Keep gates closed to prevent animals from wandering off.'),
+(9, 'Avoid disturbing farm machinery or equipment.'),
+(9, 'Be cautious of electric fences on the farm.'),
+(9, 'Follow farm rules and guidelines for your safety.'),
+
+-- Historic Landmark
+(10, 'Do not touch or climb on historic structures.'),
+(10, 'Respect the significance of the site by following guidelines.'),
+(10, 'Take only photographs, leave only footprints.'),
+(10, 'Avoid littering to preserve the landmark’s beauty.'),
+(10, 'Stay on designated paths to protect the site.'),
+(10, 'Learn about the history and significance of the site.'),
+
+-- Rivers
+(11, 'Avoid polluting the water; dispose of trash properly.'),
+(1, 'Be cautious of strong currents when swimming.'),
+(11, 'Respect the river’s wildlife by not disturbing their habitats.'),
+(11, 'Stay on designated paths to avoid erosion.'),
 (12, 'Do not use soap or detergent in the river.'),
 (12, 'Enjoy the river responsibly; do not disturb other visitors.');
