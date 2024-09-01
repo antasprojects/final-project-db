@@ -193,19 +193,17 @@ CREATE TABLE IF NOT EXISTS Tags (
 
 -- Insert new tags into the Tags table referring to all Green_Places
 INSERT INTO Tags (tag_name, place_id) VALUES
-('Hiking', 1),
-('Cycling', 4),
-('Dog-friendly', 2),
-('Garden', 11),
-('Wildlife', 3),
-('Horse Riding', 12),
-('Beach', 26),
-('Dog-friendly', 1),
+('Woodlands', 3),
+('Hiking', 3),
+('Beach', 25),
+('Camping', 26),
 ('Park', 1),
-('Historic Landmark', 14),
-('Camping', 13),
-('Playground', 9),
-('River', 18);
+('Garden', 23),
+('Wildlife', 24),
+('Farm', 18),
+('Historic', 16),
+('Rivers', 28);
+
 
 
 -- Table for saving user journeys to revisit their planned trips
@@ -237,10 +235,6 @@ VALUES
 (1, 2, 1, 'You should check out Central Park, it is beautiful!'),
 (2, 3, 2, 'Hyde Park is great for a relaxing day out.');
 
-
-
--- Drop the existing Environmental_Reminders table if it exists
-DROP TABLE IF EXISTS Environmental_Reminders CASCADE;
 
 -- Create the Environmental_Reminders table
 CREATE TABLE IF NOT EXISTS Environmental_Reminders (
