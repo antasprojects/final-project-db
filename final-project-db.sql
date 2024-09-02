@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS Green_Places (
     longitude FLOAT NOT NULL,                -- Longitude for the green space's location
     rating FLOAT CHECK (rating >= 0 AND rating <= 5),  -- Average user rating (0-5 scale)
     address VARCHAR(255),                    -- Full address of the green space
-    image_url VARCHAR(500),                  -- URL to an image of the green space
+    image_url VARCHAR(500)[],                  -- URL to an image of the green space
     googleid VARCHAR(255),
     tag_id INT REFERENCES Tags(tag_id)
 );
@@ -95,7 +95,7 @@ INSERT INTO Users (username, email, password_hash) VALUES
 -- Insert dummy data into Green_Places table for locations in London 
 INSERT INTO Green_Places (name, location_type, description, latitude, longitude, rating, address, image_url, googleid, tag_id)
 VALUES
-('Hyde Park', 'park', 'A major park in central London.', 51.507268, -0.165730, 4.7, 'London W2 2UH, UK', 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Hyde_Park_from_air.jpg/640px-Hyde_Park_from_air.jpg', 'PLACE_ID_1', 3);
+('Hyde Park', 'park', 'A major park in central London.', 51.507268, -0.165730, 4.7, 'London W2 2UH, UK', ARRAY['https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Hyde_Park_from_air.jpg/640px-Hyde_Park_from_air.jpg'], 'PLACE_ID_1', 3);
 
 
 
