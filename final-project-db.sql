@@ -65,7 +65,7 @@ CREATE TABLE likes (
   FOREIGN KEY (place_id) REFERENCES Green_Places(place_id)
 );
 
-CREATE TABLE IF NOT EXISTS User_Visited_Spots (
+CREATE TABLE IF NOT EXISTS Users_Profile(
     user_id INT NOT NULL,
     place_id INT NOT NULL,
     PRIMARY KEY (user_id, place_id),
