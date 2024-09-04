@@ -5,6 +5,8 @@ DROP TABLE IF EXISTS User_Recommendations CASCADE;
 DROP TABLE IF EXISTS Saved CASCADE;           
 DROP TABLE IF EXISTS Green_Places CASCADE;             
 DROP TABLE IF EXISTS Users CASCADE;  
+DROP TABLE IF EXISTS Users_profile;
+DROP TABLE IF EXISTS likes;
 
 -- Create the Users table to store user information
 CREATE TABLE IF NOT EXISTS Users (
@@ -55,6 +57,18 @@ CREATE TABLE IF NOT EXISTS User_Recommendations (
     place_id INT REFERENCES Green_Places(place_id),   -- Foreign key referencing Green_Places table
     message TEXT,                                     -- Optional message included with the recommendation
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP    -- Timestamp of when the recommendation was made
+);
+
+CREATE TABLE likes (
+  place_id INT PRIMARY KEY,
+  like_count INT DEFAULT 0,
+  FOREIGN KEY (place_id) REFERENCES Green_Places(place_id)
+);
+
+CREATE TABLE Users_Profile (
+    user_id INT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES Users(user_id),
+    FOREIGN KEY (visited_spots) REFERENCES Green_Places(place_id)
 );
 
 
