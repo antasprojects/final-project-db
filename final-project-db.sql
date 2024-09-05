@@ -1,5 +1,4 @@
 -- Drop existing tables if they exist
-DROP TABLE IF EXISTS Tags CASCADE;                     
 DROP TABLE IF EXISTS Environmental_Reminders CASCADE;  
 DROP TABLE IF EXISTS User_Recommendations CASCADE;     
 DROP TABLE IF EXISTS Saved_places CASCADE;           
@@ -7,6 +6,8 @@ DROP TABLE IF EXISTS Green_Places CASCADE;
 DROP TABLE IF EXISTS Users CASCADE;  
 DROP TABLE IF EXISTS Users_profile;
 DROP TABLE IF EXISTS likes;
+DROP TABLE IF EXISTS tags;
+
 
 -- Create the Users table to store user information
 CREATE TABLE IF NOT EXISTS Users (
@@ -21,6 +22,7 @@ CREATE TABLE IF NOT EXISTS tags (
     tag_id SERIAL PRIMARY KEY,          -- Unique identifier for each tag (auto-incremented)
     tag_name VARCHAR(500) UNIQUE NOT NULL  -- Name of the tag (must be unique and not null)
 );
+
 -- Create the Green_Places table to store information about green spaces
 CREATE TABLE IF NOT EXISTS Green_Places (
     place_id SERIAL PRIMARY KEY,             -- Unique identifier for each green place (auto-incremented)
@@ -33,7 +35,8 @@ CREATE TABLE IF NOT EXISTS Green_Places (
     address VARCHAR(255),                    -- Full address of the green space
     image_url VARCHAR(5000)[],                  -- URL to an image of the green space
     googleid VARCHAR(255),
-    tag_id INT REFERENCES Tags(tag_id)
+    tag_id INT REFERENCES Tags(tag_id),
+    tag_name VARCHAR(500) NOT NULL
 );
 
 -- Create the Environmental_Reminders table to store reminders associated with tags
@@ -75,7 +78,7 @@ CREATE TABLE IF NOT EXISTS Users_Profile(
 
 
 
--- Insert predefined tags into the tags table
+-- -- Insert predefined tags into the tags table
 INSERT INTO tags (tag_name) VALUES
 ('Woodlands'),
 ('Hiking'),
@@ -87,8 +90,6 @@ INSERT INTO tags (tag_name) VALUES
 ('Wildlife'),
 ('Farm'),
 ('Rivers');
-
-
 
 -- Insert dummy data into Users table
 INSERT INTO Users (username, email, password_hash) VALUES
@@ -109,9 +110,9 @@ INSERT INTO Users (username, email, password_hash) VALUES
 
 
 -- Insert dummy data into Green_Places table for locations in London 
-INSERT INTO Green_Places (name, location_type, description, latitude, longitude, rating, address, image_url, googleid, tag_id)
+INSERT INTO Green_Places (name, location_type, description, latitude, longitude, rating, address, image_url, googleid, tag_id, tag_name)
 VALUES
-('Hyde Park', 'park', 'A major park in central London.', 51.507268, -0.165730, 4.7, 'London W2 2UH, UK', ARRAY['https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Hyde_Park_from_air.jpg/640px-Hyde_Park_from_air.jpg'], 'PLACE_ID_1', 3);
+('Hyde Park', 'park', 'Hyde Park is a large, historic park in central London, offering expansive green spaces, gardens, and recreational areas like the Serpentine Lake. It is a popular spot for outdoor activities, cultural events.', 51.507268, -0.165730, 4.7, 'London W2 2UH, UK', ARRAY['https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Hyde_Park_from_air.jpg/640px-Hyde_Park_from_air.jpg'], 'PLACE_ID_1', 3, 'Park');
 
 
 
