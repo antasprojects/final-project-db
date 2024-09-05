@@ -2,7 +2,7 @@
 DROP TABLE IF EXISTS Tags CASCADE;                     
 DROP TABLE IF EXISTS Environmental_Reminders CASCADE;  
 DROP TABLE IF EXISTS User_Recommendations CASCADE;     
-DROP TABLE IF EXISTS Saved CASCADE;           
+DROP TABLE IF EXISTS Saved_places CASCADE;           
 DROP TABLE IF EXISTS Green_Places CASCADE;             
 DROP TABLE IF EXISTS Users CASCADE;  
 DROP TABLE IF EXISTS Users_profile;
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS Green_Places (
     longitude FLOAT NOT NULL,                -- Longitude for the green space's location
     rating FLOAT CHECK (rating >= 0 AND rating <= 5),  -- Average user rating (0-5 scale)
     address VARCHAR(255),                    -- Full address of the green space
-    image_url VARCHAR(500)[],                  -- URL to an image of the green space
+    image_url VARCHAR(5000)[],                  -- URL to an image of the green space
     googleid VARCHAR(255),
     tag_id INT REFERENCES Tags(tag_id)
 );
